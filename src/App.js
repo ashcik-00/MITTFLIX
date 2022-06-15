@@ -12,11 +12,16 @@ function App() {
   useEffect(() => {
     searchMovies("the flash").then((movie) => setMovies(movie));
   }, []);
+
+  const handleSearch = (query) => {
+    searchMovies(query).then((movie) => setMovies(movie));
+  };
+
   return (
     <React.Fragment>
       <div id="root">
         <Header>
-          <Form />
+          <Form searchMovies={handleSearch} />
         </Header>
         <MovieList movies={movies} />
       </div>
