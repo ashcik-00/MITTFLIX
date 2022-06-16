@@ -5,7 +5,7 @@ const Movie = ({ movie, toggleAddToWatchList }) => {
   };
   return (
     <div className="movie">
-      <a href="/details/60735">
+      <a href={`/details/${id}`}>
         <img
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
           alt="Movie poster"

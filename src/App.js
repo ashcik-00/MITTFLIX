@@ -13,6 +13,7 @@ import {
 } from "react-router-dom";
 import Main from "./components/Main";
 import Search from "./components/Search";
+import Details from "./components/Details";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -51,7 +52,7 @@ function App() {
               />
             }
           />
-          {/* <Route path="/details/:id" element={<Details />} /> */}
+          <Route path="/details/:id" element={<Details />} />
           <Route path="/search/:query" element={<Search />} />
           {/* <Route path="/watchlist" element={<WatchList />} /> */}
         </Routes>

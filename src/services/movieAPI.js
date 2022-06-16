@@ -34,3 +34,11 @@ export const allTvShows = () => {
     })
     .catch((err) => console.log(err));
 };
+
+export const showDetails = async (id) => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/tv/${id}?api_key=${API_Key}`
+  );
+  const result = response.json();
+  return result;
+};
