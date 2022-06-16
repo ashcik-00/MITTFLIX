@@ -1,14 +1,17 @@
 import Movie from "./Movie";
 
-const MovieList = ({ movies }) => {
-  console.log(movies);
+const MovieList = ({ title, movies, toggleAddToWatchList }) => {
   return (
     <div className="titleList">
       <div className="title">
-        <h1>Netflix</h1>
+        <h1>{title}</h1>
         <div className="titles-wrapper">
-          {movies.map((movie) => (
-            <Movie key={movie.id} movie={movie} />
+          {movies?.map((movie) => (
+            <Movie
+              key={movie.id}
+              movie={movie}
+              toggleAddToWatchList={toggleAddToWatchList}
+            />
           ))}
         </div>
       </div>

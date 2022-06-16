@@ -10,4 +10,31 @@ const searchMovies = async (query) => {
   return movies;
 };
 
+// const TvShows_URL = `https://api.themoviedb.org/3/discover/tv?api_key=${API_Key}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_providers=8&watch_region=CA`;
+const ALLNetflixTvShows_URL = fetch(
+  `https://api.themoviedb.org/3/discover/tv?api_key=${API_Key}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2Winnipeg&include_null_first_air_dates=false&with_watch_providers=8&watch_region=CA`
+);
+const ALLCraveTvShows_URL = fetch(
+  `https://api.themoviedb.org/3/discover/tv?api_key=${API_Key}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2Winnipeg&include_null_first_air_dates=false&with_watch_providers=230&watch_region=CA`
+);
+const ALLDisneyTvShows_URL = fetch(
+  `https://api.themoviedb.org/3/discover/tv?api_key=${API_Key}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2Winnipeg&include_null_first_air_dates=false&with_watch_providers=337&watch_region=CA`
+);
+const ALLApplePlusTvShows_URL = fetch(
+  `https://api.themoviedb.org/3/discover/tv?api_key=${API_Key}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2Winnipeg&include_null_first_air_dates=false&with_watch_providers=350&watch_region=CA`
+);
+
+export const allTvShows = () => {
+  return Promise.all([
+    ALLNetflixTvShows_URL,
+    ALLCraveTvShows_URL,
+    ALLDisneyTvShows_URL,
+    ALLApplePlusTvShows_URL,
+  ])
+    .then((responses) => {
+      return Promise.all(responses.map((response) => response.clone().json()));
+    })
+    .catch((err) => console.log(err));
+};
+
 export default searchMovies;
