@@ -1,5 +1,4 @@
 import React from "react";
-
 import MovieList from "./MovieList";
 
 const WatchList = ({ handleWatchList, watchListData }) => {

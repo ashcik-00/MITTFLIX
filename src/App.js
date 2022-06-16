@@ -3,14 +3,9 @@ import React from "react";
 import "./App.css";
 import Header from "./components/Header.jsx";
 import Form from "./components/Form";
-import MovieList from "./components/MovieList";
-import { searchMovies, allTvShows } from "./services/movieAPI";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  BrowserRouter,
-} from "react-router-dom";
+
+import { allTvShows } from "./services/movieAPI";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Main from "./components/Main";
 import Search from "./components/Search";
 import Details from "./components/Details";
@@ -18,7 +13,9 @@ import WatchList from "./components/WatchList";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [addToWatchList, setAddToWatchList] = useState([]);
+  const [addToWatchList, setAddToWatchList] = useState(
+    JSON.parse(localStorage.getItem(`watchList`)) || []
+  );
 
   useEffect(() => {
     allTvShows().then((data) => {
@@ -27,15 +24,22 @@ function App() {
     });
   }, [movies]);
 
-  const handleToggleAddToWatchList = (id) => {
-    setAddToWatchList((prevState) => {
-      console.log(typeof prevState);
-      const movieIndex = prevState.findIndex((movieId) => movieId === id);
-      if (movieIndex === -1) {
-        return [...prevState, id];
-      }
-    });
-  };
+  // const filteredAddToWatchList = (prevState, movies) => {
+  //   const inWatchList = prevState.find((item) => item.id === movies.id);
+  //   if (inWatchList) {
+  //     setAddToWatchList(prevState.filter((item) => item.id !== movies.id));
+  //   }
+  // };
+
+  // const handleToggleAddToWatchList = (id) => {
+  //   setAddToWatchList((prevState) => {
+  //     // console.log(typeof prevState);
+  //     const movieIndex = prevState.findIndex((movieId) => movieId === id);
+  //     if (movieIndex === -1) {
+  //       return [...prevState, id];
+  //     }
+  //   });
+  // };
 
   return (
     <React.Fragment>
@@ -49,7 +53,7 @@ function App() {
             element={
               <Main
                 movies={movies}
-                handleToggleAddToWatchList={handleToggleAddToWatchList}
+                // handleToggleAddToWatchList={handleToggleAddToWatchList}
               />
             }
           />
@@ -61,6 +65,7 @@ function App() {
               <WatchList
                 addToWatchList={addToWatchList}
                 setAddToWatchList={setAddToWatchList}
+                // filteredAddToWatchList={filteredAddToWatchList}
               />
             }
           />
