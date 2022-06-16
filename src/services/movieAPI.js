@@ -1,16 +1,14 @@
-// import API_Key from "../api-key";
 const API_Key = "79acc0cb1a78284302956c4780a4a425";
 
 const SEARCH_URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_Key}`;
 
-const searchMovies = async (query) => {
+export const searchMovies = async (query) => {
   const request = await fetch(`${SEARCH_URL}&query=${query}`);
   const response = await request.json();
   const movies = await response.results;
   return movies;
 };
 
-// const TvShows_URL = `https://api.themoviedb.org/3/discover/tv?api_key=${API_Key}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&include_null_first_air_dates=false&with_watch_providers=8&watch_region=CA`;
 const ALLNetflixTvShows_URL = fetch(
   `https://api.themoviedb.org/3/discover/tv?api_key=${API_Key}&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2Winnipeg&include_null_first_air_dates=false&with_watch_providers=8&watch_region=CA`
 );
@@ -36,5 +34,3 @@ export const allTvShows = () => {
     })
     .catch((err) => console.log(err));
 };
-
-export default searchMovies;

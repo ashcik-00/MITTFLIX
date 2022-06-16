@@ -5,6 +5,14 @@ import Header from "./components/Header.jsx";
 import Form from "./components/Form";
 import MovieList from "./components/MovieList";
 import { searchMovies, allTvShows } from "./services/movieAPI";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  BrowserRouter,
+} from "react-router-dom";
+import Main from "./components/Main";
+import Search from "./components/Search";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -29,31 +37,25 @@ function App() {
 
   return (
     <React.Fragment>
-      <div id="root">
+      <Router>
         <Header>
           <Form />
         </Header>
-        <MovieList
-          title="Netflix"
-          movies={movies[0]?.results}
-          toggleAddToWatchList={handleToggleAddToWatchList}
-        />
-        <MovieList
-          title="Crave"
-          movies={movies[1]?.results}
-          toggleAddToWatchList={handleToggleAddToWatchList}
-        />
-        <MovieList
-          title="Disney"
-          movies={movies[2]?.results}
-          toggleAddToWatchList={handleToggleAddToWatchList}
-        />
-        <MovieList
-          title="ApplePlus"
-          movies={movies[3]?.results}
-          toggleAddToWatchList={handleToggleAddToWatchList}
-        />
-      </div>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Main
+                movies={movies}
+                handleToggleAddToWatchList={handleToggleAddToWatchList}
+              />
+            }
+          />
+          {/* <Route path="/details/:id" element={<Details />} /> */}
+          <Route path="/search/:query" element={<Search />} />
+          {/* <Route path="/watchlist" element={<WatchList />} /> */}
+        </Routes>
+      </Router>
     </React.Fragment>
   );
 }

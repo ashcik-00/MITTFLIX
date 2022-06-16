@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Form = ({ searchMovies }) => {
+const Form = () => {
   const [searchResult, setSearchResult] = useState("");
 
   const handleChange = (event) => {
@@ -9,8 +9,7 @@ const Form = ({ searchMovies }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    searchMovies(searchResult);
-    setSearchResult("");
+    window.location.href = `http://localhost:3000/search/${searchResult}`;
   };
 
   return (
