@@ -14,6 +14,7 @@ import {
 import Main from "./components/Main";
 import Search from "./components/Search";
 import Details from "./components/Details";
+import WatchList from "./components/WatchList";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -54,7 +55,15 @@ function App() {
           />
           <Route path="/details/:id" element={<Details />} />
           <Route path="/search/:query" element={<Search />} />
-          {/* <Route path="/watchlist" element={<WatchList />} /> */}
+          <Route
+            path="/my-watch-list"
+            element={
+              <WatchList
+                addToWatchList={addToWatchList}
+                setAddToWatchList={setAddToWatchList}
+              />
+            }
+          />
         </Routes>
       </Router>
     </React.Fragment>

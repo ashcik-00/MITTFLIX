@@ -227,6 +227,7 @@ a {
   -webkit-transition: background 0.125s ease;
   transition: background 0.125s ease;
   border-radius: 3px;
+  list-style-type: none;
 }
 
 .navigation a {
@@ -243,6 +244,9 @@ a {
   align-items: center;
   justify-content: center;
   width: 100%;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   position: absolute;
   display: flex;
   flex-direction: column;
